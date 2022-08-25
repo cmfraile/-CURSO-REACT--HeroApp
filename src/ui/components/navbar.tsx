@@ -16,14 +16,14 @@ export const Navbar = () => {
 
                     <NavLink
                         className={({isActive}) => {return `nav-item nav-link ${(isActive) && 'active'}`}} 
-                        to="/marvel"
+                        to="marvel"
                     >
                         Marvel
                     </NavLink>
 
                     <NavLink 
                         className={({isActive}) => {return `nav-item nav-link ${(isActive) && 'active'}`}} 
-                        to="/dc"
+                        to="dc"
                     >
                         DC
                     </NavLink>
@@ -34,7 +34,7 @@ export const Navbar = () => {
                 <ul className="navbar-nav ml-auto">
                     <NavLink 
                         className={(ia) => {return `nav-item nav-link ${(ia) && 'active-link'}`}}
-                        to="/login"
+                        to="/"
                     >
                         Logout
                     </NavLink>

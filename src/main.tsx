@@ -12,10 +12,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={ <Loginroute/> } />
+        <Route path='' element={ <Loginroute/> } />
         <Route path='/hero/*' element={ <Heroroute/> } />
-
-        <Route path="/" element={<Navigate to='/'/>}></Route>
+        <Route path="*" element={<Navigate to=''/>}></Route>
       </Routes>
     </BrowserRouter>
 

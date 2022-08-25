@@ -7,10 +7,8 @@ export const Heroroute = () => {
     <>
     <Navbar/>
     <Routes>
-      <Route path="/marvel" element={<Marvel />}></Route>
-      <Route path="/dc" element={<Dc />}></Route>
-
-      <Route path="/" element={<Navigate to='/marvel'/>}></Route>
+      <Route path="marvel" element={<Marvel />}></Route>
+      <Route path="dc" element={<Dc />}></Route>
     </Routes>
     </>
     )
