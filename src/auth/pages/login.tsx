@@ -1,5 +1,6 @@
+import { useNavigate } from "react-router-dom"
+
 export const Login = () => {
-    return(
-        <h2>Login</h2>
-    )
+    const nav = useNavigate()
+    return(<button className="btn btn-primary" onClick={() => {nav('/hero',{replace:true})}} >Login</button>)
 }

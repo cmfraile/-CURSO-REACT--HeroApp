@@ -1,9 +1,6 @@
 import { Navbar } from "../../ui/components/navbar"
+import { Login } from "../pages/login"
 
 export const Loginroute = () => {
-    return(
-    <>
-    <h2>Login</h2>
-    </>
-    )
+    return(<Login/>)
 }
