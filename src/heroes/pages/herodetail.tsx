@@ -22,8 +22,9 @@ export const HeroDetail = ({heroeid}:{heroeid:string}) => {
                     <li>Editora : { publisher }</li>
                     <li>Alter ego : { alter_ego }</li>
                     <li>Primera aparición: { first_appearance }</li>
-                    <li>Personajes : { characters }</li>
+                    {(alter_ego !== characters) && (<li>Personajes : { characters }</li>)}
                 </ul>
+                <button className="btn btn-danger"> Atras </button>
             </div>
         </div>
     )
