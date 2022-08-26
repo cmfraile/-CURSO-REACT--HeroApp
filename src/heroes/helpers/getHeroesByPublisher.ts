@@ -1,6 +1,8 @@
 import { heroes } from "../data/heroes";
 
-export const getHeroesByPublisher = ( publisher:'Marvel Comics'|'DC Comics' ) => {
+interface heroe {id:string,superhero:string,publisher:string,alter_ego:string,first_appearance:string,characters:string};
+
+export const getHeroesByPublisher = ( publisher:'Marvel Comics'|'DC Comics' ):heroe[] => {
     switch(publisher){
         case 'Marvel Comics': ;break;
         case 'DC Comics': ;break;

@@ -1,12 +1,12 @@
-import { getHeroesByPublisher } from "../helpers/getHeroesByPublisher"
+import { Herolist } from "../components/HeroList"
 import { Marvel } from "./Marvel"
 
 export const Dc = () => {
 
     return(
         <>
-        <h2>Detective Comics</h2>
-        <code>{JSON.stringify(getHeroesByPublisher('DC Comics'))}</code>
+        {Herolist('DC Comics')}
         </>
     )
+    
 }
