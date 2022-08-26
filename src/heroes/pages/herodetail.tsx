@@ -1,4 +1,4 @@
-import { Navigate, useParams } from "react-router-dom"
+import { Navigate, useParams , useNavigate } from "react-router-dom"
 import { getHeroeById } from "../helpers/getHeroById"
 import { heroe } from "../helpers/getHeroesByPublisher"
 import './herodetail.sass'
@@ -7,6 +7,7 @@ export const HeroDetail = () => {
 
     const { hid } = useParams();
     if(!getHeroeById(hid)){return <Navigate to='../marvel'/>}
+    const nav = useNavigate();
     const { id , superhero , publisher , alter_ego , first_appearance , characters } = getHeroeById(hid);
 
     const cardstyle = (publisher:string):React.CSSProperties => {
@@ -27,7 +28,7 @@ export const HeroDetail = () => {
                     <li>Primera aparición: { first_appearance }</li>
                     {(alter_ego !== characters) && (<li>Personajes : { characters }</li>)}
                 </ul>
-                <button className="btn btn-danger"> Atras </button>
+                <button className="btn btn-danger" onClick={() => {nav(-1)}} > Atras </button>
             </div>
         </div>
     )
