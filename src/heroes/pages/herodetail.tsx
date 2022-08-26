@@ -6,8 +6,8 @@ import './herodetail.sass'
 export const HeroDetail = () => {
 
     const { hid } = useParams();
+    if(!getHeroeById(hid)){return <Navigate to='../marvel'/>}
     const { id , superhero , publisher , alter_ego , first_appearance , characters } = getHeroeById(hid);
-    if(!id){return <Navigate to='../hero/marvel'/>}
 
     const cardstyle = (publisher:string):React.CSSProperties => {
         return {
