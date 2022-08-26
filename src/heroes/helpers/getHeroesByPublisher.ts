@@ -1,6 +1,6 @@
 import { heroes } from "../data/heroes";
 
-interface heroe {id:string,superhero:string,publisher:string,alter_ego:string,first_appearance:string,characters:string};
+export interface heroe {id:string,superhero:string,publisher:string,alter_ego:string,first_appearance:string,characters:string};
 
 export const getHeroesByPublisher = ( publisher:'Marvel Comics'|'DC Comics' ):heroe[] => {
     switch(publisher){
