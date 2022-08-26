@@ -1,10 +1,13 @@
+import { Navigate, useParams } from "react-router-dom"
 import { getHeroeById } from "../helpers/getHeroById"
 import { heroe } from "../helpers/getHeroesByPublisher"
 import './herodetail.sass'
 
-export const HeroDetail = ({heroeid}:{heroeid:string}) => {
+export const HeroDetail = () => {
 
-    const { id , superhero , publisher , alter_ego , first_appearance , characters } = getHeroeById(heroeid);
+    const { hid } = useParams();
+    const { id , superhero , publisher , alter_ego , first_appearance , characters } = getHeroeById(hid);
+    if(!id){return <Navigate to='../hero/marvel'/>}
 
     const cardstyle = (publisher:string):React.CSSProperties => {
         return {
@@ -16,7 +19,7 @@ export const HeroDetail = ({heroeid}:{heroeid:string}) => {
     return(
         <div className="root__heroDetail">
             <div className="tarjeta" style={cardstyle(publisher)}>
-                <img src={`../assets/heroes/${id}.jpg`}/>
+                <img src={`/assets/heroes/${id}.jpg`}/>
                 <ul>
                     <li>Superheroe : { superhero }</li>
                     <li>Editora : { publisher }</li>
