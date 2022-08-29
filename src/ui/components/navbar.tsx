@@ -12,8 +12,8 @@ export const Navbar = () => {
             
             <div className="navbar-collapse">
                 <div className="navbar-nav">
-                    <NavLink className={({isActive}) => {return `nav-item nav-link ${(isActive) && 'active'}`}} to="marvel">Marvel</NavLink>
-                    <NavLink className={({isActive}) => {return `nav-item nav-link ${(isActive) && 'active'}`}} to="dc">DC</NavLink>
+                    <NavLink className={({isActive}) => {return `nav-item nav-link ${(isActive) && 'active'}`}} to="/hero/marvel">Marvel</NavLink>
+                    <NavLink className={({isActive}) => {return `nav-item nav-link ${(isActive) && 'active'}`}} to="/hero/dc">DC</NavLink>
                 </div>
                 <form className="form-inline">
                     <input 

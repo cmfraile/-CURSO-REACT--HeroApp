@@ -1,4 +1,5 @@
 import { Navigate, useParams , useNavigate } from "react-router-dom"
+import { Navbar } from "../../ui/components/navbar"
 import { getHeroeById } from "../helpers/getHeroById"
 import { heroe } from "../helpers/getHeroesByPublisher"
 import './herodetail.sass'
@@ -6,7 +7,7 @@ import './herodetail.sass'
 export const HeroDetail = () => {
 
     const { hid } = useParams();
-    if(!getHeroeById(hid)){return <Navigate to='../marvel'/>}
+    if(!getHeroeById(hid)){return <Navigate to='/hero/marvel'/>}
     const nav = useNavigate();
     const { id , superhero , publisher , alter_ego , first_appearance , characters } = getHeroeById(hid);
 
@@ -18,6 +19,8 @@ export const HeroDetail = () => {
     }
 
     return(
+        <>
+        <Navbar/>
         <div className="root__heroDetail">
             <div className="tarjeta" style={cardstyle(publisher)}>
                 <img src={`/assets/heroes/${id}.jpg`}/>
@@ -31,5 +34,6 @@ export const HeroDetail = () => {
                 <button className="btn btn-danger" onClick={() => {nav(-1)}} > Atras </button>
             </div>
         </div>
+        </>
     )
 }
