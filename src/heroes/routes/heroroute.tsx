@@ -9,7 +9,7 @@ export const Heroroute = () => {
     <Routes>
       <Route path="marvel" element={<Herolist publisher="Marvel Comics" />}></Route>
       <Route path="dc" element={<Herolist publisher="DC Comics" />}></Route>
-      <Route path="" element={<Navigate to='marvel'/>}></Route>
+      <Route path="*" element={<Navigate to='marvel'/>}></Route>
     </Routes>
     </>
     )

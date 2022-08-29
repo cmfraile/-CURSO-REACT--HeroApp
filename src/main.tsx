@@ -7,6 +7,7 @@ import { Login } from './auth/pages/login';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './main.sass';
+import { Search } from './heroes/pages';
 
 
 
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="*" element={<Navigate to=''/>} />
         <Route path='hero/*' element={ <Heroroute/> } />
         <Route path="detail/:hid" element={ <HeroDetail/> } />
+        <Route path="search/" element={ <Search/> } />
       </Routes>
     </BrowserRouter>
 

@@ -2,12 +2,14 @@ import React from "react";
 import { getHeroesByPublisher } from "../helpers/getHeroesByPublisher";
 import { getHeroesBySearch } from "../helpers/getHeroBySearch";
 import './herolist.sass';
+import { useNavigate } from "react-router-dom";
 
 interface hlprop {publisher?:'Marvel Comics'|'DC Comics',search?:'string'}
 
 export const Herolist = ({publisher,search}:hlprop) => {
 
     let heroes:any[] = [];
+    const nav = useNavigate();
 
     const cardstyle = (heroid:string,publisher:string):React.CSSProperties => {
         return {
@@ -20,7 +22,7 @@ export const Herolist = ({publisher,search}:hlprop) => {
         }
     }
 
-    const iconsrc = () => {
+    const iconsrc = (publisher:string) => {
         switch(publisher){
             case 'Marvel Comics' : return `../assets/heroes/MARVEL.png`;
             case 'DC Comics' : return `../assets/heroes/DC.png`;
@@ -39,9 +41,10 @@ export const Herolist = ({publisher,search}:hlprop) => {
                     return (
                         <div    className="mycard fondodefault"
                                 style={cardstyle(x.id,x.publisher)}
+                                onClick={() => {nav(`/detail/${x.id}`)}}
                                 key={x.id}>
                             <p>{x.superhero}</p>
-                            <img src={iconsrc()}/>
+                            <img src={iconsrc(x.publisher)}/>
                         </div>
                     )
                 })
