@@ -4,7 +4,7 @@ import { getHeroesBySearch } from "../helpers/getHeroBySearch";
 import './herolist.sass';
 import { useNavigate } from "react-router-dom";
 
-interface hlprop {publisher?:'Marvel Comics'|'DC Comics',search?:'string'}
+interface hlprop {publisher?:'Marvel Comics'|'DC Comics',search?:string}
 
 export const Herolist = ({publisher,search}:hlprop) => {
 

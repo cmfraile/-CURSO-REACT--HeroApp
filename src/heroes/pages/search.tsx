@@ -1,5 +1,12 @@
+import { useParams } from "react-router-dom"
+import { Herolist } from "./HeroList"
+
 export const Search = () => {
-    return(
-        <h2>Búsqueda del término:</h2>
-    )
+    const { sc } = useParams();
+    return (sc) ? (
+        <>
+        <h2>Criterio de búsqueda</h2>
+        <Herolist search={sc}/>
+        </>
+    ) : (<></>)
 }

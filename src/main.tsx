@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="*" element={<Navigate to=''/>} />
         <Route path='hero/*' element={ <Heroroute/> } />
         <Route path="detail/:hid" element={ <HeroDetail/> } />
-        <Route path="search/" element={ <Search/> } />
+        <Route path="search/:sc" element={ <Search/> } />
       </Routes>
     </BrowserRouter>
 
