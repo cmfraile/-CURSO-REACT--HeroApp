@@ -2,7 +2,7 @@ import React from "react";
 import { getHeroesByPublisher } from "../helpers/getHeroesByPublisher";
 import { getHeroesBySearch } from "../helpers/getHeroBySearch";
 import './herolist.sass';
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 interface hlprop {publisher?:'Marvel Comics'|'DC Comics',search?:string}
 
@@ -31,11 +31,16 @@ export const Herolist = ({publisher,search}:hlprop) => {
     }
 
     if(publisher){ heroes = getHeroesByPublisher(publisher) };
-    if(search){ heroes = getHeroesBySearch(search) };    
+    if(search){ heroes = getHeroesBySearch(search) };   
     
     //El div debes de encerrarlo en el <Link>
     return(
         <ul className="cards__herolist">
+            {(heroes.length == 0) && (
+                <div className="alert alert-warning" role="alert">
+                No se ha encontrado nada segun el criterio de búsqueda.
+                </div>
+            )}
             {
                 heroes.map((x) => {
                     return (

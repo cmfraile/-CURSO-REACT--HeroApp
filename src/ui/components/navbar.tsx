@@ -5,7 +5,7 @@ import '../../main.sass'
 export const Navbar = () => {
 
     const navigate = useNavigate();
-    const { search , formState , onInputChange , onResetForm } = useForma({search:''});
+    const { search , onInputChange , onResetForm } = useForma({search:''});
 
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -20,18 +20,20 @@ export const Navbar = () => {
                 <form       className="form-inline"
                             onSubmit={e => {
                                 e.preventDefault();
-                                navigate(`search/${search}`)
+                                if(search == ''){return}
+                                navigate(`/search/${search}`)
                                 onResetForm()
                             }}
-                            >
+                >
                     <input
-                        key={'search'}
-                        type={'search'}
+                        key='search'
+                        type='search'
                         className="form-control"
                         placeholder='búsqueda'
-                        name={search}
-                        value={formState[search]}
+                        name='search'
+                        value={search}
                         onChange={onInputChange}
+                        autoComplete='false'
                     />
                 </form>
             </div>
