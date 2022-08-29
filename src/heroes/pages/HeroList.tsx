@@ -1,9 +1,13 @@
 import React from "react";
 import { getHeroesByPublisher } from "../helpers/getHeroesByPublisher";
-import { Link } from "react-router-dom";
+import { getHeroesBySearch } from "../helpers/getHeroBySearch";
 import './herolist.sass';
 
-export const Herolist = (publisher:'Marvel Comics'|'DC Comics') => {
+interface hlprop {publisher?:'Marvel Comics'|'DC Comics',search?:'string'}
+
+export const Herolist = ({publisher,search}:hlprop) => {
+
+    let heroes:any[] = [];
 
     const cardstyle = (heroid:string,publisher:string):React.CSSProperties => {
         return {
@@ -24,7 +28,9 @@ export const Herolist = (publisher:'Marvel Comics'|'DC Comics') => {
         }
     }
 
-    const heroes = getHeroesByPublisher(publisher);
+    if(publisher){ heroes = getHeroesByPublisher(publisher) };
+    if(search){ heroes = getHeroesBySearch(search) };    
+    
     //El div debes de encerrarlo en el <Link>
     return(
         <ul className="cards__herolist">
@@ -32,7 +38,7 @@ export const Herolist = (publisher:'Marvel Comics'|'DC Comics') => {
                 heroes.map((x) => {
                     return (
                         <div    className="mycard fondodefault"
-                                style={cardstyle(x.id,publisher)}
+                                style={cardstyle(x.id,x.publisher)}
                                 key={x.id}>
                             <p>{x.superhero}</p>
                             <img src={iconsrc()}/>
