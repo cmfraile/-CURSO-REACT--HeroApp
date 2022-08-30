@@ -9,6 +9,7 @@ import * as APF from '../src/auth/context/authcontext';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './main.sass';
 import { Search } from './heroes/pages';
+import { PrivateRoute } from './auth/routes/privateRoute';
 
 
 
@@ -19,9 +20,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Routes>
           <Route path='' element={ <Login/> } />
           <Route path="*" element={<Navigate to=''/>} />
-          <Route path='hero/*' element={ <Heroroute/> } />
-          <Route path="detail/:hid" element={ <HeroDetail/> } />
-          <Route path="search/:sc" element={ <Search/> } />
+
+          <Route path='hero/*' element={<PrivateRoute><Heroroute/></PrivateRoute>}/>
+          <Route path="detail/:hid" element={ <PrivateRoute><HeroDetail/></PrivateRoute> } />
+          <Route path="search/:sc" element={ <PrivateRoute><Search/></PrivateRoute> } />
+          
         </Routes>
       </BrowserRouter>
     </APF.AuthProvider>
