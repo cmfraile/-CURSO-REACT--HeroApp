@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter , Routes , Route , Navigate } from 'react-router-dom';
-import { Heroroute } from './heroes/routes/heroroute';
-import { HeroDetail } from './heroes/pages/herodetail';
+import { PrivateRoute } from './heroes/routes/privateroute';
 import { Login } from './auth/pages/login';
 import * as APF from '../src/auth/context/authcontext';
 
@@ -18,10 +17,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <BrowserRouter>
         <Routes>
           <Route path='' element={ <Login/> } />
-          <Route path="*" element={<Navigate to=''/>} />
-          <Route path='hero/*' element={ <Heroroute/> } />
-          <Route path="detail/:hid" element={ <HeroDetail/> } />
-          <Route path="search/:sc" element={ <Search/> } />
+          <Route path='/*' element={ <PrivateRoute/> } />
         </Routes>
       </BrowserRouter>
     </APF.AuthProvider>
