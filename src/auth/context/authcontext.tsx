@@ -21,18 +21,15 @@ export const AuthReducer = (state:state,action:action) => {
 
 export const AuthContext = createContext<any>({});
 export const AuthProvider = ({children}:any) => {
-    const [ StateAuth , DispatchAuth ] = useReducer(AuthReducer,{logged:false});
+    const [ StateAuth , DispatchAuth ] = useReducer(AuthReducer,{logged:false},() => {
+        const caso = localStorage.getItem('user');
+        if(caso){return JSON.parse(caso)}else{return {logged:false}}
+    });
     const onLogin = () => {
-        DispatchAuth(
-            {
-                type:types.login,
-                payload:{
-                id:`${random(0,9)}${random(0,9)}${random(0,9)}`,
-                name: shuffle(['Carlos','Dani','Antonio','Juan','Paco']).pop() || ""
-                }
-            }
-        )
+        const user = {type:types.login,payload:{id:`${random(0,9)}${random(0,9)}${random(0,9)}`,name: shuffle(['Carlos','Dani','Antonio','Juan','Paco']).pop() || ""}};
+        DispatchAuth(user);
+        localStorage.setItem('user',JSON.stringify(user));
     }
-    const onLogout = () => { DispatchAuth( {type:types.logout} ) };
+    const onLogout = () => { DispatchAuth( {type:types.logout} ) ; localStorage.removeItem('user') };
     return(<AuthContext.Provider value={{aname:StateAuth.user?.name,onLogin,onLogout}}>{children}</AuthContext.Provider>)
 }
