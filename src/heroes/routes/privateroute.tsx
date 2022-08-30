@@ -6,24 +6,21 @@ import { useContext } from "react";
 import { AuthContext } from "../../auth/context/authcontext";
 import { Navbar } from "../../ui/components/navbar";
 
-const privateOutlet = () => {
+export const PrivateOutlet = () => {
     return(
-        <>
-        <Navbar/>
         <Routes>
-            <Route path="marvel" element={<Herolist publisher="Marvel Comics" />}></Route>
-            <Route path="dc" element={<Herolist publisher="DC Comics" />}></Route>
-            <Route path="" element={<Navigate to='marvel'/>}></Route>
-            <Route path="detail/:hid" element={ <HeroDetail/> } />
-            <Route path="search/:sc" element={ <Search/> } />
+            <Route path="*/marvel" element={<Herolist publisher="Marvel Comics" />}></Route>
+            <Route path="*" element={<Navigate to='marvel'/>}></Route>
+            <Route path="*/dc" element={<Herolist publisher="DC Comics" />}></Route>
+            <Route path="*/detail/:hid" element={ <HeroDetail/> } />
+            <Route path="*/search/:sc" element={ <Search/> } />
         </Routes>
-        </>
     )
 }
 
-export const PrivateRoute = () => {
+export const PrivateRoute = ({children}:any) => {
     const { sname } = useContext(AuthContext);
     return (sname !== undefined)
-    ? privateOutlet()
+    ? children
     : <Navigate to=''/>
 }
