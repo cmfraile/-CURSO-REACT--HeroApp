@@ -7,5 +7,12 @@ export const PrivateRoute = ({children}:any) => {
     const { aname } = useContext(AuthContext);
     return (aname !== undefined)
     ? children
-    : <Navigate to={'/'}/>
+    : <Navigate to='/'/>
+}
+
+export const PublicRoute = ({children}:any) => {
+    const { aname } = useContext(AuthContext);
+    return (aname == undefined)
+    ? children
+    : <Navigate to='/marvel'/>
 }

@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter , Routes , Route , Navigate } from 'react-router-dom';
-import { PrivateRoute , PrivateOutlet } from './heroes/routes/privateroute';
 import { Login } from './auth/pages/login';
 import * as APF from '../src/auth/context/authcontext';
-
+import { Heroroute } from './heroes/routes/heroroute';
+import { HeroDetail } from './heroes/pages/herodetail';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './main.sass';
 import { Search } from './heroes/pages';
-import { PrivateRoute } from './auth/routes/privateRoute';
+import { PrivateRoute , PublicRoute } from './auth/routes/scopeRoute';
 
 
 
@@ -17,17 +17,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <APF.AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path='' element={ <Login/> } />
-<<<<<<< HEAD
-          <Route path='/*' element={ <PrivateRoute><PrivateOutlet/></PrivateRoute> } />
-=======
-          <Route path="*" element={<Navigate to=''/>} />
-
+          <Route path='' element={ <PublicRoute><Login/></PublicRoute> } />
+          <Route path="*" element={ <PublicRoute><Navigate to=''/></PublicRoute> } />
           <Route path='hero/*' element={<PrivateRoute><Heroroute/></PrivateRoute>}/>
           <Route path="detail/:hid" element={ <PrivateRoute><HeroDetail/></PrivateRoute> } />
           <Route path="search/:sc" element={ <PrivateRoute><Search/></PrivateRoute> } />
-          
->>>>>>> retroceso
         </Routes>
       </BrowserRouter>
     </APF.AuthProvider>
