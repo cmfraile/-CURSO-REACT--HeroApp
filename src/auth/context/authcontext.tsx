@@ -1,24 +1,38 @@
 import { createContext, useReducer } from "react";
+import { random , shuffle } from "underscore";
 
-export enum types {
+enum types {
     login = '[AUTH] Login',
     logout = '[AUTH] Logout'
 }
 
-interface state {logged:boolean,name?:string};
-interface action {type:string,payload:{name:string}}
+interface user {id:string,name:string}
+interface state {logged:boolean,user?:user};
+interface action {type:string,payload?:user}
 export const AuthReducer = (state:state,action:action) => {
     if(!action){return state};
     const { type , payload } = action ; const { login , logout } = types;
     switch(type){
-        case login  : ({...state,logged:true,name:payload.name}) ;break;
-        case logout : ({logged:false}) ;break;
+        case login  : return {logged:true,user:payload};
+        case logout : return {logged:false};
     }
     return state;
 }
 
 export const AuthContext = createContext<any>({});
 export const AuthProvider = ({children}:any) => {
-    const [ sauth , dauth ] = useReducer(AuthReducer,{logged:false})
-    return(<AuthContext.Provider value={{sauth,dauth}}>{children}</AuthContext.Provider>)
+    const [ StateAuth , DispatchAuth ] = useReducer(AuthReducer,{logged:false});
+    const onLogin = () => {
+        DispatchAuth(
+            {
+                type:types.login,
+                payload:{
+                id:`${random(0,9)}${random(0,9)}${random(0,9)}`,
+                name: shuffle(['Carlos','Dani','Antonio','Juan','Paco']).pop() || ""
+                }
+            }
+        )
+    }
+    const onLogout = () => { DispatchAuth( {type:types.logout} ) };
+    return(<AuthContext.Provider value={{aname:StateAuth.user?.name,onLogin,onLogout}}>{children}</AuthContext.Provider>)
 }

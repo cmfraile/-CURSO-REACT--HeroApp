@@ -1,10 +1,13 @@
+import { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../auth/context/authcontext';
 import { useForma } from '../../heroes/hooks/useForma';
 import '../../main.sass'
 
 export const Navbar = () => {
 
     const navigate = useNavigate();
+    const { aname , onLogout } = useContext( AuthContext )
     const { search , onInputChange , onResetForm } = useForma({search:''});
 
     return (
@@ -40,7 +43,11 @@ export const Navbar = () => {
             
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                 <ul className="navbar-nav ml-auto">
-                    <button className='btn btn-danger' onClick={() => {navigate('/',{replace:true})}}>Logout</button>
+                    {(aname) && (<p className='nombreuser'>{aname}</p>)}
+                    <button className='btn btn-danger' onClick={() => {
+                        onLogout();
+                        navigate('/',{replace:true})
+                    }}>Logout</button>
                 </ul>
             </div>
         
