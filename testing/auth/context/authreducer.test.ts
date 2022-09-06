@@ -28,6 +28,17 @@ const main = () => {
         expect(logout).toStrictEqual({logged:false});
     });
 
+    test('prueba de los tipos del reducer',() => {
+        //Types del 6-09-2022:
+        const actualtypes:string[] = ['login','logout'];
+        const lexcheck = (ts:string):void => {
+            if(!actualtypes.includes(ts)){throw new Error(`El tipo ${ts} no esta en los tipos actuales`)};
+            const stringcast = `[AUTH] ${ts.substring(0,1).toUpperCase()}${ts.substring(1)}`;
+            if(types[ts] !== stringcast){throw new Error(`ERROR: ${stringcast} no esta bien confeccionado`)};
+        }
+        Object.keys(types).map(lexcheck);
+    });
+
 }
 
 describe('Pruebas de authreducer',main)

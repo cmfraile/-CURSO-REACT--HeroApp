@@ -3,7 +3,7 @@ import { random , shuffle } from "underscore";
 
 export enum types {
     login = '[AUTH] Login',
-    logout = '[AUTH] Logout'
+    logout = '[AUTH] Logout',
 }
 
 interface user {id:string,name:string}
