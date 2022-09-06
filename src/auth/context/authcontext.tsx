@@ -1,7 +1,7 @@
 import { createContext, useReducer } from "react";
 import { random , shuffle } from "underscore";
 
-enum types {
+export enum types {
     login = '[AUTH] Login',
     logout = '[AUTH] Logout'
 }
@@ -9,14 +9,14 @@ enum types {
 interface user {id:string,name:string}
 interface state {logged:boolean,user?:user};
 interface action {type:string,payload?:user}
-export const AuthReducer = (state:state,action:action) => {
+export const AuthReducer = (state:state,action:action|undefined) => {
     if(!action){return state};
     const { type , payload } = action ; const { login , logout } = types;
     switch(type){
         case login  : return {logged:true,user:payload};
         case logout : return {logged:false};
+        default : return {logged:false};
     }
-    return state;
 }
 
 export const AuthContext = createContext<any>({});
