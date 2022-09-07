@@ -44,7 +44,7 @@ export const Navbar = () => {
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                 <ul className="navbar-nav ml-auto">
                     {(aname) && (<p className='nombreuser' aria-label='nombreuser'>{aname}</p>)}
-                    <button className='btn btn-danger' onClick={() => {
+                    <button className='btn btn-danger' aria-label='lobtn' onClick={() => {
                         onLogout();
                         navigate('/',{replace:true})
                     }}>Logout</button>
