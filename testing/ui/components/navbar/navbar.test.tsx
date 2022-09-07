@@ -8,12 +8,15 @@ import { Navbar } from "../../../../src/ui/components/navbar";
 //1 - El Navbar debe de mostrar el nombre de usuario
 //2 - y el logout | debe de hacer sus dos funciones:
 
-const unMOCKED = jest.fn();
 
-jest.mock('react-router-dom', () => ({
+const unMOCKED = jest.fn();
+jest.doMock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useNavigate: () => unMOCKED,
-}));
+    })
+);
+
+
 
 const main = () => {
 
@@ -34,7 +37,7 @@ const main = () => {
     test('Debe de hacer el Logout',() => {
         render(
             <APF.AuthContext.Provider value={cvalue} >
-                <MemoryRouter initialEntries={['/hero/marvel']} >
+                <MemoryRouter>
                     <Navbar/>
                 </MemoryRouter>
             </APF.AuthContext.Provider>
@@ -42,8 +45,8 @@ const main = () => {
         const logoutbtn = screen.getByLabelText('lobtn');
         fireEvent.click(logoutbtn);
         expect(cvalue.onLogout).toHaveBeenCalled();
-        expect(unMOCKED).toHaveBeenCalledWith('/',{replace:true});
+        expect( unMOCKED ).toHaveBeenCalledWith('/',{replace:true})
     });
 }
 
-describe('',main);
+describe('Pruebas en el <Navbar>',main);
