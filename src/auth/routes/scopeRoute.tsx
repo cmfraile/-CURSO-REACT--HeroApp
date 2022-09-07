@@ -13,5 +13,5 @@ export const PublicRoute = ({children}:any) => {
     const { aname } = useContext(AuthContext);
     return (aname == undefined)
     ? children
-    : <Navigate to='/marvel'/>
+    : <Navigate to='/hero'/>
 }
