@@ -7,15 +7,15 @@ import * as APF from '../../src/auth/context/authcontext';
 const main = () => {
     
     test('debe de mostrar el children si no esta autenticado',() => {
-        const cvalue = {logged:false}
+        const cvalue = {aname:undefined}
         render(
             <APF.AuthContext.Provider value={cvalue}>
                 <PublicRoute>
-                    <h1>Esto chucha</h1>
+                    <h1>Hijo</h1>
                 </PublicRoute>
             </APF.AuthContext.Provider>
         )
-        screen.debug()
+        expect(screen.getByRole('heading',{name:'Hijo'})).toBeTruthy();
     });
 
 
