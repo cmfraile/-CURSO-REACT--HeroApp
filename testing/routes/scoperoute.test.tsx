@@ -34,7 +34,23 @@ const main = () => {
             </APF.AuthContext.Provider>
         );
         expect(screen.getByRole('heading',{name:'Marvel - Ruta privada'})).toBeTruthy();
-    })
+    });
+
+    test('private muestra children si hay autenticación',() => {
+
+        //Storage.propotype.setItem = jest.fn() ; Forma de "mockear" una función.
+        //expect(localStorage.setItem).tohavebeencalled();
+
+        const cvalue = {aname:'Torto'}
+        render(
+            <APF.AuthContext.Provider value={cvalue}>
+                <PrivateRoute>
+                    <h1>Hijo</h1>
+                </PrivateRoute>
+            </APF.AuthContext.Provider>
+        )
+        expect(screen.getByRole('heading',{name:'Hijo'})).toBeTruthy();
+    });
 
 
 
