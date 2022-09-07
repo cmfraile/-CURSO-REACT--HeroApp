@@ -9,12 +9,12 @@ import { Navbar } from "../../../../src/ui/components/navbar";
 //2 - y el logout | debe de hacer sus dos funciones:
 
 
-const unMOCKED = jest.fn();
-jest.doMock('react-router-dom', () => ({
+const mockedUseNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
-    useNavigate: () => unMOCKED,
-    })
-);
+    useNavigate: () => mockedUseNavigate,
+}));
 
 
 
@@ -45,7 +45,7 @@ const main = () => {
         const logoutbtn = screen.getByLabelText('lobtn');
         fireEvent.click(logoutbtn);
         expect(cvalue.onLogout).toHaveBeenCalled();
-        expect( unMOCKED ).toHaveBeenCalledWith('/',{replace:true})
+        expect( mockedUseNavigate ).toHaveBeenCalledWith('/',{replace:true})
     });
 }
 
