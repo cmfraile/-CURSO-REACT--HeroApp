@@ -2,20 +2,25 @@ import React from 'react';
 import { render , screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { Herolist, Search } from '../../../src/heroes/pages';
-import * as APF from '../../../src/auth/context/authcontext';
 
 const main = () => {
-    const cvalue = {aname:'Torto'}
-    test('snapsnot',() => {
+
+    test('El herolist debe de buscar por publisher',() => {
         render(
-            <APF.AuthContext.Provider value={cvalue} >
-                <MemoryRouter>
-                    <Herolist publisher='DC Comics'/>
-                </MemoryRouter>
-            </APF.AuthContext.Provider>
+            <MemoryRouter>
+                <Herolist publisher='DC Comics'/>
+            </MemoryRouter>
         );
-        screen.debug()
-    })
+    });
+
+    test('El herolist debe de buscar por search',() => {
+        render(
+            <MemoryRouter>
+                <Herolist search='Hawkeye'/>
+            </MemoryRouter>
+        );
+    });
+
 };
 
 describe('pruebas del herolist',main)

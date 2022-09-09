@@ -30,7 +30,6 @@ const main = () => {
         </APF.AuthContext.Provider>
         );
         expect(screen.getByLabelText('nombreuser').innerHTML).toBe('Torto');
-        screen.debug()
     });
     
     test('Debe de hacer el Logout',() => {
