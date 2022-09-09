@@ -21,6 +21,7 @@ export const Navbar = () => {
                     <NavLink className={({isActive}) => {return `nav-item nav-link ${(isActive) && 'active'}`}} to="/hero/dc">DC</NavLink>
                 </div>
                 <form       className="form-inline"
+                            aria-label='fhero'
                             onSubmit={e => {
                                 e.preventDefault();
                                 if(search == ''){return}
@@ -35,6 +36,7 @@ export const Navbar = () => {
                         placeholder='búsqueda'
                         name='search'
                         value={search}
+                        aria-label='shero'
                         onChange={onInputChange}
                         autoComplete='false'
                     />

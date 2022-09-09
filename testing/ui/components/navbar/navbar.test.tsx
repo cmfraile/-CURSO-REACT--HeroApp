@@ -1,5 +1,6 @@
 import { fireEvent, render , screen } from "@testing-library/react";
 import { MemoryRouter , useNavigate } from 'react-router-dom';
+import { AppRouter } from "../../../../src/approuter";
 import React from "react" ;
 
 import * as APF from '../../../../src/auth/context/authcontext';
@@ -47,6 +48,20 @@ const main = () => {
         expect(cvalue.onLogout).toHaveBeenCalled();
         expect( mockedUseNavigate ).toHaveBeenCalledWith('/',{replace:true})
     });
+
+    test('Debe de hacer el submit del navbar',() => {
+        render(
+            <APF.AuthContext.Provider value={cvalue} >
+                <MemoryRouter>
+                    <AppRouter/>
+                </MemoryRouter>
+            </APF.AuthContext.Provider>
+        );
+        const fhero:HTMLFormElement = screen.getByLabelText('fhero');
+        const shero:HTMLInputElement = screen.getByLabelText('shero');
+        console.log(fhero);
+        //screen.debug();
+    })
 }
 
 describe('Pruebas en el <Navbar>',main);
