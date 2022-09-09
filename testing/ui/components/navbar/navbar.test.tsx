@@ -49,7 +49,7 @@ const main = () => {
         expect( mockedUseNavigate ).toHaveBeenCalledWith('/',{replace:true})
     });
 
-    test('Debe de hacer el submit del navbar',() => {
+    test('Debe de hacer submit con un valor válido y vaciar la barra de búsqueda',() => {
         render(
             <APF.AuthContext.Provider value={cvalue} >
                 <MemoryRouter>
@@ -59,9 +59,26 @@ const main = () => {
         );
         const fhero:HTMLFormElement = screen.getByLabelText('fhero');
         const shero:HTMLInputElement = screen.getByLabelText('shero');
-        console.log(fhero);
-        //screen.debug();
-    })
+        fireEvent.input(shero,{target:{value:'spiderman'}});
+        fireEvent.submit(shero);
+        expect( mockedUseNavigate ).toHaveBeenCalledWith('/search/spiderman');
+        expect(shero.value).toBe('');
+    });
+
+    test('Debe de NO hacer submit con un valor inválido',() => {
+        render(
+            <APF.AuthContext.Provider value={cvalue} >
+                <MemoryRouter>
+                    <AppRouter/>
+                </MemoryRouter>
+            </APF.AuthContext.Provider>
+        );
+        const fhero:HTMLFormElement = screen.getByLabelText('fhero');
+        const shero:HTMLInputElement = screen.getByLabelText('shero');
+        fireEvent.input(shero,{target:{value:''}});
+        fireEvent.submit(shero);
+        expect( mockedUseNavigate ).not.toHaveBeenCalledWith('/search/spiderman');
+    });
 }
 
 describe('Pruebas en el <Navbar>',main);
