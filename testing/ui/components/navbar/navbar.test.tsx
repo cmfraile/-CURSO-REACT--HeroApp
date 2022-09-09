@@ -11,13 +11,10 @@ import { Navbar } from "../../../../src/ui/components/navbar";
 
 
 const mockedUseNavigate = jest.fn();
-
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useNavigate: () => mockedUseNavigate,
 }));
-
-
 
 const main = () => {
 
@@ -33,6 +30,7 @@ const main = () => {
         </APF.AuthContext.Provider>
         );
         expect(screen.getByLabelText('nombreuser').innerHTML).toBe('Torto');
+        screen.debug()
     });
     
     test('Debe de hacer el Logout',() => {
